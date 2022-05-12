@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 import Avatar from "@mui/material/Avatar";
@@ -21,11 +21,12 @@ import Events from "../entities/Events.json";
 
 import back from "../images/back.jpeg";
 
-const Login2 = () => {
+const Login = () => {
   const { state, createUsers, createEvents, authorizeUser } =
     useContext(Context);
   const [email, setEmail] = useState<string | undefined>();
   const [password, setPassword] = useState<string | undefined>();
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const fetchUser = async () => {
@@ -94,7 +95,7 @@ const Login2 = () => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            {t("LOGIN")}
           </Typography>
           <Box component="form" noValidate sx={{ mt: 1 }}>
             <TextField
@@ -102,7 +103,7 @@ const Login2 = () => {
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label={t("EMAIL")}
               name="email"
               autoComplete="email"
               autoFocus
@@ -113,7 +114,7 @@ const Login2 = () => {
               required
               fullWidth
               name="password"
-              label="Password"
+              label={t("PASSWORD")}
               type="password"
               id="password"
               autoComplete="current-password"
@@ -126,7 +127,7 @@ const Login2 = () => {
               sx={{ mt: 3, mb: 2 }}
               onClick={() => handleLogin()}
             >
-              Sign In
+              {t("SIGN_IN")}
             </Button>
           </Box>
         </Box>
@@ -134,4 +135,4 @@ const Login2 = () => {
     </Grid>
   );
 };
-export default Login2;
+export default Login;

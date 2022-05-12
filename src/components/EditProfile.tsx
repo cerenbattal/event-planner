@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useTranslation } from "react-i18next";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
@@ -27,6 +28,7 @@ const Profile = () => {
   const [email, setEmail] = useState<string | undefined>();
   const [username, setUsername] = useState<string | undefined>();
   const { state, updateProfile } = useContext(Context);
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const handleUpdateProfile = () => {
@@ -49,7 +51,7 @@ const Profile = () => {
               sx={{ width: 72, height: 72 }}
             />
             <Typography gutterBottom variant="h5" component="div">
-              Profile
+              {t("PROFILE")}
             </Typography>
           </div>
 
@@ -66,7 +68,7 @@ const Profile = () => {
                   columns={{ xs: 4, sm: 8, md: 12 }}
                 >
                   <Typography gutterBottom variant="h6" component="div">
-                    Username
+                    {t("USERNAME")}
                   </Typography>
                 </Grid>
                 <Grid
@@ -87,7 +89,7 @@ const Profile = () => {
                   columns={{ xs: 4, sm: 8, md: 12 }}
                 >
                   <Typography gutterBottom variant="h6" component="div">
-                    Email
+                    {t("EMAIL")}
                   </Typography>
                 </Grid>
                 <Grid

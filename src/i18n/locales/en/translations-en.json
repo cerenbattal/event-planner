@@ -1,0 +1,20 @@
+{
+  "HOME": "Home",
+  "UPCOMING_EVENTS": "Upcoming Events",
+  "PAST_EVENTS": "Past Events",
+  "PROFILE": "Profile",
+  "LOGOUT": "Logout",
+  "LOGIN": "Login",
+  "SIGN_IN": "Sign In",
+  "EVENTS": "Events",
+  "Users": "Users",
+  "EVENT_TYPES": "Event Types",
+  "USERNAME": "Username",
+  "EMAIL": "Email",
+  "PASSWORD": "Password",
+  "LEARN_MORE": "Learn More",
+  "EDIT_PROFILE": "Edit profile",
+  "WELCOME": "Welcome to event planner",
+  "WELCOME_DESC": "You can subscribe hundreds of events here!",
+  "START": "Let's get started"
+}

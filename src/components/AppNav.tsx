@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { useTranslation } from "react-i18next";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -16,60 +17,60 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { NavLink } from "react-router-dom";
 import { Context } from "../context/GlobalContext";
 
-const userPages = [
-  {
-    id: 1,
-    name: "Home",
-    link: "/home",
-  },
-  {
-    id: 2,
-    name: "Upcoming Events",
-    link: "/upcoming-events",
-  },
-  {
-    id: 3,
-    name: "Past Events",
-    link: "/past-events",
-  },
-];
-
-const adminPages = [
-  {
-    id: 1,
-    name: "Events",
-    link: "/events",
-  },
-  {
-    id: 2,
-    name: "Users",
-    link: "/users",
-  },
-  {
-    id: 3,
-    name: "Event Types",
-    link: "/event-types",
-  },
-];
-
-const settings = [
-  {
-    id: 1,
-    name: "Profile",
-    link: "/profile",
-  },
-  {
-    id: 2,
-    name: "Logout",
-    link: "/login",
-  },
-];
-
 const AppNav = () => {
   const [elNav, setElNav] = React.useState<null | HTMLElement>(null);
   const [elUser, setElUser] = React.useState<null | HTMLElement>(null);
-
   const { state, unauthorizeUser } = useContext(Context);
+  const { t } = useTranslation();
+
+  const userPages = [
+    {
+      id: 1,
+      name: t("HOME"),
+      link: "/home",
+    },
+    {
+      id: 2,
+      name: t("UPCOMING_EVENTS"),
+      link: "/upcoming-events",
+    },
+    {
+      id: 3,
+      name: t("PAST_EVENTS"),
+      link: "/past-events",
+    },
+  ];
+
+  const adminPages = [
+    {
+      id: 1,
+      name: t("EVENTS"),
+      link: "/events",
+    },
+    {
+      id: 2,
+      name: t("USERS"),
+      link: "/users",
+    },
+    {
+      id: 3,
+      name: t("EVENT_TYPES"),
+      link: "/event-types",
+    },
+  ];
+
+  const settings = [
+    {
+      id: 1,
+      name: t("PROFILE"),
+      link: "/profile",
+    },
+    {
+      id: 2,
+      name: t("LOGOUT"),
+      link: "/login",
+    },
+  ];
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setElNav(event.currentTarget);

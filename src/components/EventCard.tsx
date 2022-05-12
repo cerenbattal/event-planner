@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { useTranslation } from "react-i18next";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -22,6 +22,7 @@ type Props = {
  */
 const EventCard = (props: Props) => {
   const [showLearnMore, setShowLearnMore] = useState(false);
+  const { t } = useTranslation();
 
   const handleLearnMore = () => {
     setShowLearnMore(!showLearnMore);
@@ -44,7 +45,7 @@ const EventCard = (props: Props) => {
           </CardContent>
           <CardActions>
             <Button size="small" onClick={() => handleLearnMore()}>
-              Learn More
+              {t("LEARN_MORE")}
             </Button>
           </CardActions>
         </CardActionArea>

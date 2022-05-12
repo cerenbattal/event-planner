@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
@@ -21,6 +22,7 @@ const profileContent = {
 } as React.CSSProperties;
 
 const Profile = () => {
+  const { t } = useTranslation();
   return (
     <>
       <Container fixed>
@@ -32,13 +34,13 @@ const Profile = () => {
               sx={{ width: 72, height: 72 }}
             />
             <Typography gutterBottom variant="h5" component="div">
-              Profile
+              {t("PROFILE")}
             </Typography>
           </div>
 
           <NavLink to="/edit-profile" style={{ textDecoration: "none" }}>
             <Typography gutterBottom variant="subtitle1" component="div">
-              Edit Profile
+              {t("EDIT_PROFILE")}
             </Typography>
           </NavLink>
 
@@ -55,7 +57,7 @@ const Profile = () => {
                   columns={{ xs: 4, sm: 8, md: 12 }}
                 >
                   <Typography gutterBottom variant="h6" component="div">
-                    Username
+                    {t("USERNAME")}
                   </Typography>
                 </Grid>
                 <Grid
@@ -73,7 +75,7 @@ const Profile = () => {
                   columns={{ xs: 4, sm: 8, md: 12 }}
                 >
                   <Typography gutterBottom variant="h6" component="div">
-                    Email
+                    {t("EMAIL")}
                   </Typography>
                 </Grid>
                 <Grid

@@ -1,0 +1,20 @@
+{
+  "HOME": "Home",
+  "UPCOMING_EVENTS": "Kommende Veranstaltungen",
+  "PAST_EVENTS": "Vergangene Veranstaltungen",
+  "PROFILE": "Profil",
+  "LOGOUT": "Abmelden",
+  "LOGIN": "Anmelden",
+  "SIGN_IN": "Anmelden",
+  "EVENTS": "Die Ereignisse",
+  "Users": "Die Benutzer",
+  "EVENT_TYPES": "Die Ereignistypen",
+  "USERNAME": "Benutzername",
+  "EMAIL": "Email",
+  "PASSWORD": "Passwort",
+  "LEARN_MORE": "Mehr erfahren",
+  "EDIT_PROFILE": "Profil bearbeiten",
+  "WELCOME": "Willkommen beim Event Planer",
+  "WELCOME_DESC": "Sie können Hunderte von Veranstaltungen hier abonnieren!",
+  "START": "Lasst uns anfangen"
+}
