@@ -7,11 +7,18 @@ const dashboardStyle = {
   padding: "50px",
 };
 
+type Props = {
+  subscribedEvents: string[];
+};
+
 /**
- * Dashboard component
+ * @param {Props}
+ * @param {{
+ * type: Props
+ * }} props Props for the component
  * @return {React.Component}
  */
-function Dashboard() {
+function Dashboard(props: Props) {
   return (
     <Box style={dashboardStyle} sx={{ flexGrow: 1 }}>
       <Grid
@@ -19,9 +26,9 @@ function Dashboard() {
         spacing={{ xs: 0.5, md: 0.5 }}
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
-        {Array.from(Array(6)).map((_, index) => (
+        {props.subscribedEvents.map((event: string, index: number) => (
           <Grid item xs={2} sm={4} md={4} key={index}>
-            <EventCard />
+            <EventCard event={event} />
           </Grid>
         ))}
       </Grid>

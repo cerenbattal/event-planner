@@ -1,0 +1,32 @@
+[
+  {
+    "Id": 1,
+    "EventTypeId": 1,
+    "UserId": "cerenbattal",
+    "Name": "Football event",
+    "Description": "Football event eventeventeventeventevent",
+    "Start": "02/11/2021",
+    "End": "02/11/2021",
+    "Status": "upcoming"
+  },
+  {
+    "Id": 2,
+    "EventTypeId": 2,
+    "UserId": "cerenbattal",
+    "Name": "Football event",
+    "Description": "Football event eventeventeventeventevent",
+    "Start": "02/11/2021",
+    "End": "02/11/2021",
+    "Status": "passed"
+  },
+  {
+    "Id": 3,
+    "EventTypeId": 3,
+    "UserId": "cerenbattal",
+    "Name": "Football event",
+    "Description": "Football event eventeventeventeventevent",
+    "Start": "02/11/2021",
+    "End": "02/11/2021",
+    "Status": "passed"
+  }
+]

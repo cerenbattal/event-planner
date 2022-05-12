@@ -1,0 +1,26 @@
+[
+  {
+    "Id": 1,
+    "Name": "Athletics"
+  },
+  {
+    "Id": 2,
+    "Name": "Football"
+  },
+  {
+    "Id": 3,
+    "Name": "Basketball"
+  },
+  {
+    "Id": 4,
+    "Name": "CrossFit"
+  },
+  {
+    "Id": 5,
+    "Name": "Baseball"
+  },
+  {
+    "Id": 6,
+    "Name": "Cycling"
+  }
+]

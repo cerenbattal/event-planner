@@ -12,11 +12,15 @@ import media from "../images/back2.jpeg";
 
 import EventModal from "./EventModal";
 
+type Props = {
+  event: string;
+};
+
 /**
  *
  * @return {React.Component}
  */
-const EventCard = () => {
+const EventCard = (props: Props) => {
   const [showLearnMore, setShowLearnMore] = useState(false);
 
   const handleLearnMore = () => {
@@ -31,7 +35,7 @@ const EventCard = () => {
           <CardMedia component="img" height="140" image={media} alt="" />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              Lizard
+              {props.event}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               Lizards are a widespread group of squamate reptiles, with over
