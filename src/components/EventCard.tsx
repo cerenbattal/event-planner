@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useTranslation } from "react-i18next";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
@@ -7,25 +7,37 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
-
+import { Context } from "../context/GlobalContext";
 import media from "../images/back2.jpeg";
-
 import EventModal from "./EventModal";
 
-type Props = {
-  event: string;
+type Event = {
+  Id: number;
+  EventTypeId: number;
+  SubscribedUserIds: number[];
+  Name: String;
+  DescriptionEN: String;
+  DescriptionDE: String;
+  Start: String;
+  End: String;
+  Location: String;
 };
 
 /**
  *
  * @return {React.Component}
  */
-const EventCard = (props: Props) => {
+const EventCard = (props: any) => {
+  const { state, subscribeEvent } = useContext(Context);
   const [showLearnMore, setShowLearnMore] = useState(false);
   const { t } = useTranslation();
 
   const handleLearnMore = () => {
     setShowLearnMore(!showLearnMore);
+  };
+
+  const handleSubscription = (eventId: number) => {
+    subscribeEvent(state.authUser.Id, eventId);
   };
 
   return (
@@ -36,11 +48,10 @@ const EventCard = (props: Props) => {
           <CardMedia component="img" height="140" image={media} alt="" />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              {props.event}
+              {props.event.Name}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Lizards are a widespread group of squamate reptiles, with over
-              6,000 species, ranging across all continents except Antarctica
+              {props.event.DescriptionEN}
             </Typography>
           </CardContent>
           <CardActions>

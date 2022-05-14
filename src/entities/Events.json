@@ -1,32 +1,68 @@
 [
   {
     "Id": 1,
-    "EventTypeId": 1,
-    "UserId": "cerenbattal",
-    "Name": "Football event",
-    "Description": "Football event eventeventeventeventevent",
-    "Start": "02/11/2021",
-    "End": "02/11/2021",
-    "Status": "upcoming"
+    "EventTypeId": 3,
+    "SubscribedUserIds": [2, 5, 6, 10],
+    "Name": "Basketball event",
+    "DescriptionEN": "The event will be held on 15th of May at Istanbul.",
+    "DescriptionDE": "Die Veranstaltung findet am 15. Mai in Istanbul statt.",
+    "Start": "05/15/2021",
+    "End": "05/15/2021",
+    "Location": "Istanbul"
   },
   {
     "Id": 2,
     "EventTypeId": 2,
-    "UserId": "cerenbattal",
+    "SubscribedUserIds": [1, 5, 6, 9],
     "Name": "Football event",
-    "Description": "Football event eventeventeventeventevent",
-    "Start": "02/11/2021",
-    "End": "02/11/2021",
-    "Status": "passed"
+    "DescriptionEN": "The event will be held on 11th of February at Berlin.",
+    "DescriptionDE": "Die Veranstaltung findet am 11. Februar in Berlin statt.",
+    "Start": "02/11/2022",
+    "End": "02/11/2022",
+    "Location": "Berlin"
   },
   {
     "Id": 3,
-    "EventTypeId": 3,
-    "UserId": "cerenbattal",
-    "Name": "Football event",
-    "Description": "Football event eventeventeventeventevent",
-    "Start": "02/11/2021",
-    "End": "02/11/2021",
-    "Status": "passed"
+    "EventTypeId": 1,
+    "SubscribedUserIds": [1, 2, 4, 7, 9],
+    "Name": "Athletics event",
+    "DescriptionEN": "The event will be held on 10th of September at Berlin",
+    "DescriptionDE": "Die Veranstaltung findet am 10. September in Berlin statt.",
+    "Start": "09/10/2022",
+    "End": "09/10/2022",
+    "Location": "Berlin"
+  },
+  {
+    "Id": 4,
+    "EventTypeId": 4,
+    "SubscribedUserIds": [1, 2, 4, 7, 9],
+    "Name": "CrossFit event",
+    "DescriptionEN": "The event will be held on 11th of October at Istanbul",
+    "DescriptionDE": "Die Veranstaltung findet am 11. Oktober in Istanbul statt.",
+    "Start": "10/11/2022",
+    "End": "10/11/2022",
+    "Location": "Istanbul"
+  },
+  {
+    "Id": 5,
+    "EventTypeId": 6,
+    "SubscribedUserIds": [1, 2, 4, 7, 9],
+    "Name": "Cycling event",
+    "DescriptionEN": "The event will be held on 11th of March at Istanbul",
+    "DescriptionDE": "Die Veranstaltung findet am 11. März in Istanbul statt.",
+    "Start": "03/11/2021",
+    "End": "03/11/2021",
+    "Location": "Istanbul"
+  },
+  {
+    "Id": 6,
+    "EventTypeId": 5,
+    "SubscribedUserIds": [1, 2, 4, 7, 8, 9],
+    "Name": "Baseball event",
+    "DescriptionEN": "The event will be held on 11th of April at Berlin.",
+    "DescriptionDE": "Die Veranstaltung findet am 11. April in Berlin statt.",
+    "Start": "04/11/2022",
+    "End": "04/11/2022",
+    "Location": "Berlin"
   }
 ]

@@ -20,10 +20,11 @@ const style = {
  *
  * @return {React.Component}
  */
-export default function BasicModal() {
+const EventModal = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  // subscribeEvent
 
   return (
     <div>
@@ -45,4 +46,6 @@ export default function BasicModal() {
       </Modal>
     </div>
   );
-}
+};
+
+export default EventModal;

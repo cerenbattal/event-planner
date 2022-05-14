@@ -18,6 +18,7 @@ import { NavLink } from "react-router-dom";
 import { Context } from "../context/GlobalContext";
 
 const AppNav = () => {
+  console.log("APPNAV");
   const [elNav, setElNav] = React.useState<null | HTMLElement>(null);
   const [elUser, setElUser] = React.useState<null | HTMLElement>(null);
   const { state, unauthorizeUser } = useContext(Context);
@@ -91,6 +92,21 @@ const AppNav = () => {
   const handleLogout = () => {
     handleCloseUserMenu();
     unauthorizeUser();
+  };
+
+  const populateNavOptions = () => {
+    const mapArr = state.authUser.Role === "admin" ? adminPages : userPages;
+    return mapArr.map((page) => (
+      <NavLink to={page.link} style={{ textDecoration: "none" }}>
+        <Button
+          key={page.id}
+          onClick={handleCloseNavMenu}
+          sx={{ my: 2, color: "white", display: "block" }}
+        >
+          {page.name}
+        </Button>
+      </NavLink>
+    ));
   };
 
   return (
@@ -178,17 +194,7 @@ const AppNav = () => {
           {state.isAuth ? (
             <>
               <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-                {userPages.map((page) => (
-                  <NavLink to={page.link} style={{ textDecoration: "none" }}>
-                    <Button
-                      key={page.id}
-                      onClick={handleCloseNavMenu}
-                      sx={{ my: 2, color: "white", display: "block" }}
-                    >
-                      {page.name}
-                    </Button>
-                  </NavLink>
-                ))}
+                {populateNavOptions()}
               </Box>
 
               <Box sx={{ flexGrow: 0 }}>

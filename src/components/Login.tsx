@@ -6,9 +6,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -58,7 +55,11 @@ const Login = () => {
           // TODO: user can login
           console.log("user authorized");
           authorizeUser(foundUser);
-          navigate("/home");
+          if (foundUser.Role === "admin") {
+            navigate("/admin");
+          } else {
+            navigate("/home");
+          }
         } else {
           console.log("mail or password are wrong");
         }

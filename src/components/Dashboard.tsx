@@ -7,8 +7,20 @@ const dashboardStyle = {
   padding: "50px",
 };
 
+type Event = {
+  Id: number;
+  EventTypeId: number;
+  SubscribedUserIds: number[];
+  Name: String;
+  DescriptionEN: String;
+  DescriptionDE: String;
+  Start: String;
+  End: String;
+  Location: String;
+};
+
 type Props = {
-  subscribedEvents: string[];
+  subscribedEvents: Event[];
 };
 
 /**
@@ -26,7 +38,7 @@ function Dashboard(props: Props) {
         spacing={{ xs: 0.5, md: 0.5 }}
         columns={{ xs: 4, sm: 8, md: 12 }}
       >
-        {props.subscribedEvents.map((event: string, index: number) => (
+        {props.subscribedEvents.map((event: Event, index: number) => (
           <Grid item xs={2} sm={4} md={4} key={index}>
             <EventCard event={event} />
           </Grid>

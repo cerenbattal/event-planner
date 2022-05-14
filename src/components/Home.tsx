@@ -1,14 +1,54 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Dashboard from "./Dashboard";
+import { Context } from "../context/GlobalContext";
+
+type Event = {
+  Id: number;
+  EventTypeId: number;
+  SubscribedUserIds: number[];
+  Name: String;
+  DescriptionEN: String;
+  DescriptionDE: String;
+  Start: String;
+  End: String;
+  Location: String;
+};
 
 /**
  * Gets subscribed events and return dashboard with this data
  * @return {React.FC}
  */
 function Home() {
-  const subscribedEvents = ["Volleyball", "Basketball", "Trekking"];
+  const { state } = useContext(Context);
+  const [subscribedEvents, setSubscribedEvents] = useState<Event[]>([]);
 
-  return <Dashboard subscribedEvents={subscribedEvents} />;
+  useEffect(() => {
+    getSubscribedEvents();
+  }, []);
+
+  const findEventById = (eventId: any) => {
+    return state.events.find((event: any) => {
+      return event.Id === eventId;
+    });
+  };
+
+  const getSubscribedEvents = () => {
+    state.authUser.SubscribedEvents.forEach((eventId: any) => {
+      console.log(eventId);
+      const foundEvent = findEventById(eventId);
+      console.log(foundEvent);
+      setSubscribedEvents((subscribedEvents) => [
+        ...subscribedEvents,
+        foundEvent,
+      ]);
+    });
+  };
+
+  return subscribedEvents?.length > 0 ? (
+    <Dashboard subscribedEvents={subscribedEvents} />
+  ) : (
+    <div>no events</div>
+  );
 }
 
 export default Home;

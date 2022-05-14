@@ -16,5 +16,9 @@
   "EDIT_PROFILE": "Edit profile",
   "WELCOME": "Welcome to event planner",
   "WELCOME_DESC": "You can subscribe hundreds of events here!",
-  "START": "Let's get started"
+  "START": "Let's get started",
+  "ADMIN_HOME": "Welcome admin!",
+  "ADMIN_DESC": "What do you want to do?",
+  "ADMIN_USERS": "Manage user list",
+  "ADMIN_EVENTS": "Manage event list"
 }

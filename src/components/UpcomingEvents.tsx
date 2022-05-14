@@ -3,8 +3,8 @@ import Dashboard from "./Dashboard";
 
 const UpcomingEvents = () => {
   const subscribedEvents = ["vvv", "vvv", "vvv"];
-
-  return <Dashboard subscribedEvents={subscribedEvents} />;
+  return <></>;
+  // return <Dashboard subscribedEvents={subscribedEvents} />;
 };
 
 export default UpcomingEvents;

@@ -6,17 +6,26 @@ const globalReducer = (state, action) => {
     case 'create_users':
       return { ...state, users: action.payload.users };
     case 'create_events':
-      return { ...state, event: action.payload.events };
+      return { ...state, events: action.payload.events };
+    case 'subscribe_event':
+      const editedEvents = state.events;
+      const eventId = action.payload.eventId;
+      const userId = action.payload.userId;
+      const event = state.events.find(event => {
+        return event.Id === eventId
+      });
+      if (!(event.SubscribedUserIds.includes(userId))) {
+        event.SubscribedUserIds.push(userId)
+      }
+      editedEvents[action.payload.eventId].SubscribedUserIds = event.SubscribedUserIds;
+      return { ...state, events: editedEvents }
     case 'authorized_user':
       return { ...state, isAuth: true, authUser: action.payload.user };
     case 'unauthorized_user':
-      // const otherState = state.filter((item) => item.key === 'authUser')
       return { ...state, isAuth: false, authUser: '' };
     case 'update_profile':
       console.log("updated profile")
-    // let updatedUser = state.authUser
-    // editedAnswers[action.payload.id].answer = action.payload.updatedAnswer;
-    // return { ...state, answers: editedAnswers }
+
     default:
       return state;
   }
@@ -56,7 +65,17 @@ const createUsers = dispatch => (users) => {
 };
 
 const createEvents = dispatch => (events) => {
-  dispatch({ type: 'create_users', payload: { events: events } });
+  dispatch({ type: 'create_events', payload: { events: events } });
+};
+
+const subscribeEvent = dispatch => (userId, eventId) => {
+  dispatch({
+    type: 'subscribe_event',
+    payload: {
+      userId: userId,
+      eventId: eventId
+    }
+  });
 };
 
 const authorizeUser = dispatch => (user) => {
@@ -73,6 +92,6 @@ const updateProfile = dispatch => () => {
 
 export const { Provider, Context } = createDataContext(
   globalReducer,
-  { createUsers, createEvents, authorizeUser, unauthorizeUser, updateProfile },
-  { users: [] }
+  { createUsers, createEvents, subscribeEvent, authorizeUser, unauthorizeUser, updateProfile },
+  { users: [], isAuth: false, authUser: '', events: [] }
 );

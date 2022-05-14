@@ -3,8 +3,8 @@ import Dashboard from "./Dashboard";
 
 const PastEvents = () => {
   const subscribedEvents = ["ddd", "ddd", "ddd"];
-
-  return <Dashboard subscribedEvents={subscribedEvents} />;
+  return <></>;
+  // return <Dashboard subscribedEvents={subscribedEvents} />;
 };
 
 export default PastEvents;

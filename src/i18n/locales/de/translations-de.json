@@ -16,5 +16,9 @@
   "EDIT_PROFILE": "Profil bearbeiten",
   "WELCOME": "Willkommen beim Event Planer",
   "WELCOME_DESC": "Sie können Hunderte von Veranstaltungen hier abonnieren!",
-  "START": "Lasst uns anfangen"
+  "START": "Lasst uns anfangen",
+  "ADMIN_HOME": "Willkommen admin!",
+  "ADMIN_DESC": "Was möchten Sie tun?",
+  "ADMIN_USERS": "Benutzerliste verwalten",
+  "ADMIN_EVENTS": "Veranstaltungsliste verwalten"
 }

@@ -1,14 +1,71 @@
 import React from "react";
 import Dashboard from "./Dashboard";
+import { useTranslation } from "react-i18next";
+
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import CssBaseline from "@mui/material/CssBaseline";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+
+import { NavLink } from "react-router-dom";
 
 /**
  * Gets subscribed events and return dashboard with this data
  * @return {React.FC}
  */
-function Home() {
-  const subscribedEvents = ["Admin", "Admin", "Admin"];
+function AdminHome() {
+  const { t } = useTranslation();
 
-  return <Dashboard subscribedEvents={subscribedEvents} />;
+  return (
+    <>
+      <CssBaseline />
+      <main>
+        {/* Hero unit */}
+        <Box
+          sx={{
+            bgcolor: "background.paper",
+            pt: 8,
+            pb: 6,
+          }}
+        >
+          <Container maxWidth="sm">
+            <Typography
+              component="h1"
+              variant="h2"
+              align="center"
+              color="text.primary"
+              gutterBottom
+            >
+              {t("ADMIN_HOME")}
+            </Typography>
+            <Typography
+              variant="h5"
+              align="center"
+              color="text.secondary"
+              paragraph
+            >
+              {t("ADMIN_DESC")}
+            </Typography>
+            <Stack
+              sx={{ pt: 4 }}
+              direction="row"
+              spacing={2}
+              justifyContent="center"
+            >
+              <NavLink to="/users" style={{ textDecoration: "none" }}>
+                <Button variant="contained">{t("ADMIN_USERS")}</Button>
+              </NavLink>
+              <NavLink to="/events" style={{ textDecoration: "none" }}>
+                <Button variant="contained">{t("ADMIN_EVENTS")}</Button>
+              </NavLink>
+            </Stack>
+          </Container>
+        </Box>
+      </main>
+    </>
+  );
 }
 
-export default Home;
+export default AdminHome;

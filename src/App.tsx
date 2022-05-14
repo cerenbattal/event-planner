@@ -8,6 +8,9 @@ import PastEvents from "./components/PastEvents";
 import Profile from "./components/Profile";
 import AdminHome from "./components/AdminHome";
 import Welcome from "./components/Welcome";
+import Events from "./components/Events";
+import Users from "./components/Users";
+import NotFound from "./components/NotFound";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Context } from "./context/GlobalContext";
 import EditProfile from "./components/EditProfile";
@@ -81,7 +84,7 @@ const App: React.FC = (): JSX.Element => {
           path="/events"
           element={
             <PrivateRoute>
-              <EditProfile />
+              <Events />
             </PrivateRoute>
           }
         />
@@ -89,19 +92,11 @@ const App: React.FC = (): JSX.Element => {
           path="/users"
           element={
             <PrivateRoute>
-              <EditProfile />
+              <Users />
             </PrivateRoute>
           }
         />
-        <Route
-          path="/event-types"
-          element={
-            <PrivateRoute>
-              <EditProfile />
-            </PrivateRoute>
-          }
-        />
-        {/* <Route path="*" element={<NotFound />}></Route> */}
+        <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </>
   );
