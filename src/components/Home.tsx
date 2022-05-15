@@ -16,7 +16,7 @@ type Event = {
 
 /**
  * Gets subscribed events and return dashboard with this data
- * @return {React.FC}
+ * @return {JSX.Element}
  */
 const Home: React.FC = (): JSX.Element => {
   const { state } = useContext(Context);

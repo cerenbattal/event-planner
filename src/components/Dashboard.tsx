@@ -27,12 +27,13 @@ type Props = {
 };
 
 /**
+ * Dashboard view
  * @param {{
  * type: Props
  * }} props Props for the component
- * @return {React.Component}
+ * @return {JSX.Element}
  */
-const Dashboard: React.FC<Props> = (props: Props) => {
+const Dashboard: React.FC<Props> = (props: Props): JSX.Element => {
   const { t } = useTranslation();
   return (
     <Container style={dashboardStyle}>

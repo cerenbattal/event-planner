@@ -48,6 +48,10 @@ const useStyles = makeStyles({
   },
 });
 
+/**
+ * User list
+ * @return {JSX.Element}
+ */
 const Users: React.FC = (): JSX.Element => {
   const classes = useStyles();
   const { t } = useTranslation();

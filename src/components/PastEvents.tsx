@@ -11,6 +11,10 @@ const dashboardStyle = {
   padding: "30px",
 };
 
+/**
+ * Past event list view
+ * @return {JSX.Element}
+ */
 const PastEvents: React.FC = (): JSX.Element => {
   const { state } = useContext(Context);
   const [pastEvents, setPastEvents] = useState<[] | undefined>();

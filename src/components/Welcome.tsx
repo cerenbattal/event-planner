@@ -11,8 +11,8 @@ import Typography from "@mui/material/Typography";
 import { NavLink } from "react-router-dom";
 
 /**
- *
- * @return {React.FC}
+ * Welcome page
+ * @return {JSX.Element}
  */
 const Welcome: React.FC = (): JSX.Element => {
   const { t } = useTranslation();

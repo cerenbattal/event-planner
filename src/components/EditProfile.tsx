@@ -24,6 +24,10 @@ const profileContent = {
   marginTop: "50px",
 } as React.CSSProperties;
 
+/**
+ * Edit profile view
+ * @return {JSX.Element}
+ */
 const Profile: React.FC = (): JSX.Element => {
   const [email, setEmail] = useState<string | undefined>();
   const [name, setName] = useState<string | undefined>();

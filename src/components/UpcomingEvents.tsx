@@ -20,6 +20,10 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
+/**
+ * Upcoming event list view
+ * @return {JSX.Element}
+ */
 const UpcomingEvents: React.FC = (): JSX.Element => {
   const { state } = useContext(Context);
   const [upcomingEvents, setUpcomingEvents] = useState<[] | undefined>();

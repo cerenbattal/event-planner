@@ -38,6 +38,10 @@ const useStyles = makeStyles({
   },
 });
 
+/**
+ * Event types list view
+ * @return {JSX.Element}
+ */
 const EventTypes: React.FC = (): JSX.Element => {
   const classes = useStyles();
   const { t } = useTranslation();

@@ -22,6 +22,10 @@ const profileContent = {
   marginTop: "50px",
 } as React.CSSProperties;
 
+/**
+ * Profile view
+ * @return {JSX.Element}
+ */
 const Profile: React.FC = (): JSX.Element => {
   const { state } = useContext(Context);
   const { t } = useTranslation();

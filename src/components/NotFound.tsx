@@ -6,6 +6,10 @@ const dashboardStyle = {
   padding: "30px",
 };
 
+/**
+ * Not found view
+ * @return {JSX.Element}
+ */
 const NotFound: React.FC = (): JSX.Element => {
   return (
     <Container style={dashboardStyle}>

@@ -12,9 +12,9 @@ import media from "../images/back-img.jpg";
 
 /**
  * @param {any} props
- * @return {React.Component}
+ * @return {JSX.Element}
  */
-const EventCard: React.FC<any> = (props: any) => {
+const EventCard: React.FC<any> = (props: any): JSX.Element => {
   const { state, subscribeEvent } = useContext(Context);
   const { t } = useTranslation();
 

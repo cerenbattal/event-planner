@@ -12,7 +12,7 @@ import { NavLink } from "react-router-dom";
 
 /**
  * Gets subscribed events and return dashboard with this data
- * @return {React.FC}
+ * @return {JSX.Element}
  */
 const AdminHome: React.FC = (): JSX.Element => {
   const { t } = useTranslation();

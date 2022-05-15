@@ -19,6 +19,10 @@ import EventTypes from "../entities/EventTypes.json";
 
 import back from "../images/back.jpeg";
 
+/**
+ * Login view
+ * @return {JSX.Element}
+ */
 const Login: React.FC = (): JSX.Element => {
   const { createUsers, createEvents, authorizeUser, createEventTypes } =
     useContext(Context);

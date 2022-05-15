@@ -24,6 +24,10 @@ const FormStyle = {
   border: "none",
 };
 
+/**
+ * App navigation view
+ * @return {JSX.Element}
+ */
 const AppNav: React.FC = (): JSX.Element => {
   const [elNav, setElNav] = React.useState<null | HTMLElement>(null);
   const [elUser, setElUser] = React.useState<null | HTMLElement>(null);
