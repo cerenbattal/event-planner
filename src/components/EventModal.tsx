@@ -20,7 +20,7 @@ const style = {
  *
  * @return {React.Component}
  */
-const EventModal = () => {
+const EventModal: React.FC = (): JSX.Element => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

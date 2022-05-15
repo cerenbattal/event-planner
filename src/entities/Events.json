@@ -13,7 +13,7 @@
   {
     "Id": 2,
     "EventTypeId": 2,
-    "SubscribedUserIds": [1, 5, 6, 9],
+    "SubscribedUserIds": [5, 6, 9],
     "Name": "Football event",
     "DescriptionEN": "The event will be held on 11th of February at Berlin.",
     "DescriptionDE": "Die Veranstaltung findet am 11. Februar in Berlin statt.",
@@ -24,7 +24,7 @@
   {
     "Id": 3,
     "EventTypeId": 1,
-    "SubscribedUserIds": [1, 2, 4, 7, 9],
+    "SubscribedUserIds": [2, 4, 7, 9],
     "Name": "Athletics event",
     "DescriptionEN": "The event will be held on 10th of September at Berlin",
     "DescriptionDE": "Die Veranstaltung findet am 10. September in Berlin statt.",

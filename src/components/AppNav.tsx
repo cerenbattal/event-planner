@@ -13,16 +13,22 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-
-import { NavLink } from "react-router-dom";
+import InputLabel from "@mui/material/InputLabel";
+import FormControl from "@mui/material/FormControl";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { Context } from "../context/GlobalContext";
+import { NavLink } from "react-router-dom";
 
-const AppNav = () => {
-  console.log("APPNAV");
+const FormStyle = {
+  backgroundColor: "white",
+  border: "none",
+};
+
+const AppNav: React.FC = (): JSX.Element => {
   const [elNav, setElNav] = React.useState<null | HTMLElement>(null);
   const [elUser, setElUser] = React.useState<null | HTMLElement>(null);
-  const { state, unauthorizeUser } = useContext(Context);
-  const { t } = useTranslation();
+  const { state, unauthorizeUser, setLanguage } = useContext(Context);
+  const { t, i18n } = useTranslation();
 
   const userPages = [
     {
@@ -73,6 +79,11 @@ const AppNav = () => {
     },
   ];
 
+  const handleLanguageChange = (event: SelectChangeEvent) => {
+    i18n.changeLanguage(event.target.value as string);
+    setLanguage(event.target.value as string);
+  };
+
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setElNav(event.currentTarget);
   };
@@ -96,8 +107,9 @@ const AppNav = () => {
 
   const populateNavOptions = () => {
     const mapArr = state.authUser.Role === "admin" ? adminPages : userPages;
+
     return mapArr.map((page) => (
-      <NavLink to={page.link} style={{ textDecoration: "none" }}>
+      <NavLink to={page.link} style={{ textDecoration: "none" }} key={page.id}>
         <Button
           key={page.id}
           onClick={handleCloseNavMenu}
@@ -187,7 +199,7 @@ const AppNav = () => {
                 textDecoration: "none",
               }}
             >
-              LOGO
+              EVENT PLANNER
             </Typography>
           </NavLink>
 
@@ -226,6 +238,7 @@ const AppNav = () => {
                     <NavLink
                       to={setting.link}
                       style={{ textDecoration: "none", color: "inherit" }}
+                      key={setting.id}
                     >
                       <MenuItem
                         key={setting.id}
@@ -245,7 +258,12 @@ const AppNav = () => {
               </Box>
             </>
           ) : (
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            <Box
+              sx={{
+                flexGrow: 1,
+                display: { xs: "none", md: "flex" },
+              }}
+            >
               <NavLink to="/login" style={{ textDecoration: "none" }}>
                 <Button
                   onClick={handleCloseNavMenu}
@@ -260,6 +278,25 @@ const AppNav = () => {
               </NavLink>
             </Box>
           )}
+          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <FormControl
+              style={FormStyle}
+              sx={{ m: 1, minWidth: 120 }}
+              size="small"
+              fullWidth
+            >
+              <InputLabel id="demo-simple-select-label">Language</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                onChange={handleLanguageChange}
+                label="Language"
+              >
+                <MenuItem value={"en"}>EN</MenuItem>
+                <MenuItem value={"de"}>DE</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>

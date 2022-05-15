@@ -1,5 +1,4 @@
 import React from "react";
-import Dashboard from "./Dashboard";
 import { useTranslation } from "react-i18next";
 
 import Box from "@mui/material/Box";
@@ -15,7 +14,7 @@ import { NavLink } from "react-router-dom";
  * Gets subscribed events and return dashboard with this data
  * @return {React.FC}
  */
-function AdminHome() {
+const AdminHome: React.FC = (): JSX.Element => {
   const { t } = useTranslation();
 
   return (
@@ -66,6 +65,6 @@ function AdminHome() {
       </main>
     </>
   );
-}
+};
 
 export default AdminHome;

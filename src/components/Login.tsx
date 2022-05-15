@@ -15,11 +15,12 @@ import Typography from "@mui/material/Typography";
 import { Context } from "../context/GlobalContext";
 import Users from "../entities/Users.json";
 import Events from "../entities/Events.json";
+import EventTypes from "../entities/EventTypes.json";
 
 import back from "../images/back.jpeg";
 
-const Login = () => {
-  const { state, createUsers, createEvents, authorizeUser } =
+const Login: React.FC = (): JSX.Element => {
+  const { createUsers, createEvents, authorizeUser, createEventTypes } =
     useContext(Context);
   const [email, setEmail] = useState<string | undefined>();
   const [password, setPassword] = useState<string | undefined>();
@@ -34,9 +35,14 @@ const Login = () => {
     createEvents(Events);
   };
 
+  const fetchEventTypes = async () => {
+    createEventTypes(EventTypes);
+  };
+
   useEffect(() => {
     fetchUser();
     fetchEvents();
+    fetchEventTypes();
   }, []);
 
   const handleLogin = () => {
@@ -52,8 +58,6 @@ const Login = () => {
       } else {
         const match = foundUser?.Password === password;
         if (match) {
-          // TODO: user can login
-          console.log("user authorized");
           authorizeUser(foundUser);
           if (foundUser.Role === "admin") {
             navigate("/admin");

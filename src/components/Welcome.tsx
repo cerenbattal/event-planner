@@ -10,13 +10,16 @@ import Typography from "@mui/material/Typography";
 
 import { NavLink } from "react-router-dom";
 
-export default function Album() {
+/**
+ *
+ * @return {React.FC}
+ */
+const Welcome: React.FC = (): JSX.Element => {
   const { t } = useTranslation();
   return (
     <>
       <CssBaseline />
       <main>
-        {/* Hero unit */}
         <Box
           sx={{
             bgcolor: "background.paper",
@@ -57,4 +60,5 @@ export default function Album() {
       </main>
     </>
   );
-}
+};
+export default Welcome;

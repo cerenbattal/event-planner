@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
+import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
-
-import { NavLink } from "react-router-dom";
+import { Context } from "../context/GlobalContext";
+import { useNavigate } from "react-router-dom";
 
 const profileHeader = {
   display: "flex",
@@ -21,12 +22,14 @@ const profileContent = {
   marginTop: "50px",
 } as React.CSSProperties;
 
-const Profile = () => {
+const Profile: React.FC = (): JSX.Element => {
+  const { state } = useContext(Context);
   const { t } = useTranslation();
+  const navigate = useNavigate();
   return (
     <>
       <Container fixed>
-        <Box sx={{ bgcolor: "#cfe8fc", height: "100vh", padding: "50px" }}>
+        <Box sx={{ bgcolor: "#cfe8fc", height: "71vh", padding: "50px" }}>
           <div style={profileHeader}>
             <Avatar
               alt="Remy Sharp"
@@ -37,12 +40,6 @@ const Profile = () => {
               {t("PROFILE")}
             </Typography>
           </div>
-
-          <NavLink to="/edit-profile" style={{ textDecoration: "none" }}>
-            <Typography gutterBottom variant="subtitle1" component="div">
-              {t("EDIT_PROFILE")}
-            </Typography>
-          </NavLink>
 
           <div style={profileContent}>
             <Box>
@@ -57,7 +54,7 @@ const Profile = () => {
                   columns={{ xs: 4, sm: 8, md: 12 }}
                 >
                   <Typography gutterBottom variant="h6" component="div">
-                    {t("USERNAME")}
+                    {t("NAME")}
                   </Typography>
                 </Grid>
                 <Grid
@@ -66,7 +63,25 @@ const Profile = () => {
                   columns={{ xs: 4, sm: 8, md: 12 }}
                 >
                   <Typography gutterBottom variant="body1" component="div">
-                    cerenbattal
+                    {state.authUser.Name}
+                  </Typography>
+                </Grid>
+                <Grid
+                  container
+                  spacing={{ xs: 0, md: 0 }}
+                  columns={{ xs: 4, sm: 8, md: 12 }}
+                >
+                  <Typography gutterBottom variant="h6" component="div">
+                    {t("SURNAME")}
+                  </Typography>
+                </Grid>
+                <Grid
+                  container
+                  spacing={{ xs: 0, md: 0 }}
+                  columns={{ xs: 4, sm: 8, md: 12 }}
+                >
+                  <Typography gutterBottom variant="body1" component="div">
+                    {state.authUser.Surname}
                   </Typography>
                 </Grid>
                 <Grid
@@ -84,13 +99,22 @@ const Profile = () => {
                   columns={{ xs: 4, sm: 8, md: 12 }}
                 >
                   <Typography gutterBottom variant="body1" component="div">
-                    cerenbattal97@gmail.com
+                    {state.authUser.Email}
                   </Typography>
                 </Grid>
               </Grid>
             </Box>
           </div>
         </Box>
+        <Button
+          type="submit"
+          color="primary"
+          variant="contained"
+          fullWidth
+          onClick={() => navigate("/edit-profile")}
+        >
+          {t("EDIT")}
+        </Button>
       </Container>
     </>
   );

@@ -1,4 +1,6 @@
 import React, { useContext } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { Context } from "./context/GlobalContext";
 import "./App.css";
 import Login from "./components/Login";
 import Home from "./components/Home";
@@ -11,9 +13,8 @@ import Welcome from "./components/Welcome";
 import Events from "./components/Events";
 import Users from "./components/Users";
 import NotFound from "./components/NotFound";
-import { Routes, Route, Navigate } from "react-router-dom";
-import { Context } from "./context/GlobalContext";
 import EditProfile from "./components/EditProfile";
+import EventTypes from "./components/EventTypes";
 
 /**
  * App component
@@ -93,6 +94,14 @@ const App: React.FC = (): JSX.Element => {
           element={
             <PrivateRoute>
               <Users />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/event-types"
+          element={
+            <PrivateRoute>
+              <EventTypes />
             </PrivateRoute>
           }
         />

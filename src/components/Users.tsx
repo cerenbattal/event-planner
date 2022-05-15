@@ -3,13 +3,13 @@ import CreateIcon from "@mui/icons-material/Create";
 import {
   Box,
   Button,
-  Snackbar,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
 } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import DoneIcon from "@mui/icons-material/Done";
@@ -48,15 +48,11 @@ const useStyles = makeStyles({
   },
 });
 
-const Users = () => {
+const Users: React.FC = (): JSX.Element => {
   const classes = useStyles();
-  const { state } = useContext(Context);
-  // Defining a state named rows
-  // which we can update by calling on setRows function
-  const [rows, setRows] = useState<User[]>(state.users);
-
-  // Initial states
-  const [open, setOpen] = React.useState(false);
+  const { t } = useTranslation();
+  const { state, deleteUser, createUsers } = useContext(Context);
+  const [rows, setRows] = useState<any[]>(state.users);
   const [isEdit, setEdit] = React.useState(false);
   const [disable, setDisable] = React.useState(true);
   const [showConfirm, setShowConfirm] = React.useState(false);
@@ -66,7 +62,7 @@ const Users = () => {
     setRows([
       ...rows,
       {
-        Id: rows[-1].Id + 1,
+        Id: rows.length + 1,
         Name: "",
         Surname: "",
         Email: "",
@@ -89,19 +85,21 @@ const Users = () => {
   const handleSave = () => {
     setEdit(!isEdit);
     setRows(rows);
-    console.log("saved : ", rows);
     setDisable(true);
-    setOpen(true);
+    createUsers(rows);
   };
 
   // The handleInputChange handler can be set up to handle
   // many different inputs in the form, listen for changes
   // to input elements and record their values in state
-  const handleInputChange = (e: any, index: number) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
+    index: number
+  ) => {
     setDisable(false);
     const { name, value } = e.target;
     const list = [...rows];
-    //list[index][name] = value;
+    list[index][name] = value;
     setRows(list);
   };
 
@@ -112,11 +110,8 @@ const Users = () => {
 
   // Handle the case of delete confirmation where
   // user click yes delete a specific row of id:i
-  const handleRemoveClick = (i: number) => {
-    const list = [...rows];
-    list.splice(i, 1);
-    setRows(list);
-    setShowConfirm(false);
+  const handleRemoveClick = (user: any) => {
+    deleteUser(user);
   };
 
   // Handle the case of delete confirmation
@@ -135,19 +130,19 @@ const Users = () => {
                 <div>
                   <Button onClick={handleAdd}>
                     <AddBoxIcon onClick={handleAdd} />
-                    ADD
+                    {t("ADD")}
                   </Button>
                   {rows.length !== 0 && (
                     <div>
                       {disable ? (
                         <Button onClick={handleSave}>
                           <DoneIcon />
-                          SAVE
+                          {t("SAVE")}
                         </Button>
                       ) : (
                         <Button onClick={handleSave}>
                           <DoneIcon />
-                          SAVE
+                          {t("SAVE")}
                         </Button>
                       )}
                     </div>
@@ -157,11 +152,11 @@ const Users = () => {
                 <div>
                   <Button onClick={handleAdd}>
                     <AddBoxIcon onClick={handleAdd} />
-                    ADD
+                    {t("ADD")}
                   </Button>
                   <Button onClick={handleEdit}>
                     <CreateIcon />
-                    EDIT
+                    {t("EDIT")}
                   </Button>
                 </div>
               )}
@@ -175,14 +170,22 @@ const Users = () => {
             size="medium"
           >
             <TableHead>
-              <TableRow>
-                <TableCell>Id</TableCell>
-                <TableCell>First Name</TableCell>
-                <TableCell>Last Name</TableCell>
-                <TableCell>Email</TableCell>
-                <TableCell>Role</TableCell>
-                <TableCell>Subscribed Events</TableCell>
-              </TableRow>
+              {isEdit ? (
+                <TableRow>
+                  <TableCell>First Name</TableCell>
+                  <TableCell>Last Name</TableCell>
+                  <TableCell>Email</TableCell>
+                </TableRow>
+              ) : (
+                <TableRow>
+                  <TableCell>Id</TableCell>
+                  <TableCell>First Name</TableCell>
+                  <TableCell>Last Name</TableCell>
+                  <TableCell>Email</TableCell>
+                  <TableCell>Role</TableCell>
+                  <TableCell>Subscribed Events</TableCell>
+                </TableRow>
+              )}
             </TableHead>
             <TableBody>
               {rows.map((row: User, i: number) => {
@@ -194,28 +197,21 @@ const Users = () => {
                           <TableCell>
                             <input
                               value={row.Name}
-                              name="firstname"
+                              name="Name"
                               onChange={(e) => handleInputChange(e, i)}
                             />
                           </TableCell>
                           <TableCell>
                             <input
                               value={row.Surname}
-                              name="lastname"
+                              name="Surname"
                               onChange={(e) => handleInputChange(e, i)}
                             />
                           </TableCell>
                           <TableCell>
                             <input
                               value={row.Email}
-                              name="email"
-                              onChange={(e) => handleInputChange(e, i)}
-                            />
-                          </TableCell>
-                          <TableCell>
-                            <input
-                              value={row.Role}
-                              name="email"
+                              name="Email"
                               onChange={(e) => handleInputChange(e, i)}
                             />
                           </TableCell>
@@ -261,27 +257,27 @@ const Users = () => {
                             aria-describedby="alert-dialog-description"
                           >
                             <DialogTitle id="alert-dialog-title">
-                              {"Confirm Delete"}
+                              {t("CONFIRM_DELETE")}
                             </DialogTitle>
                             <DialogContent>
                               <DialogContentText id="alert-dialog-description">
-                                Are you sure to delete
+                                {t("DELETE")}
                               </DialogContentText>
                             </DialogContent>
                             <DialogActions>
                               <Button
-                                onClick={() => handleRemoveClick(i)}
+                                onClick={() => handleRemoveClick(row)}
                                 color="primary"
                                 autoFocus
                               >
-                                Yes
+                                {t("YES")}
                               </Button>
                               <Button
                                 onClick={handleNo}
                                 color="primary"
                                 autoFocus
                               >
-                                No
+                                {t("NO")}
                               </Button>
                             </DialogActions>
                           </Dialog>

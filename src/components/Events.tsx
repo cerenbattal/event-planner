@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
+import { useTranslation } from "react-i18next";
 import CreateIcon from "@mui/icons-material/Create";
 import {
   Box,
   Button,
-  Snackbar,
   Table,
   TableBody,
   TableCell,
@@ -50,15 +50,11 @@ const useStyles = makeStyles({
   },
 });
 
-const Events = () => {
+const Events: React.FC = (): JSX.Element => {
   const classes = useStyles();
-  const { state } = useContext(Context);
-  // Defining a state named rows
-  // which we can update by calling on setRows function
-  const [rows, setRows] = useState<Event[]>(state.events);
-
-  // Initial states
-  const [open, setOpen] = React.useState(false);
+  const { t } = useTranslation();
+  const { state, deleteEvent, createEvents } = useContext(Context);
+  const [rows, setRows] = useState<any[]>(state.events);
   const [isEdit, setEdit] = React.useState(false);
   const [disable, setDisable] = React.useState(true);
   const [showConfirm, setShowConfirm] = React.useState(false);
@@ -68,7 +64,7 @@ const Events = () => {
     setRows([
       ...rows,
       {
-        Id: rows[-1].Id + 1,
+        Id: rows.length + 1,
         EventTypeId: 1,
         SubscribedUserIds: [],
         Name: "",
@@ -95,17 +91,20 @@ const Events = () => {
     setRows(rows);
     console.log("saved : ", rows);
     setDisable(true);
-    setOpen(true);
+    createEvents(rows);
   };
 
   // The handleInputChange handler can be set up to handle
   // many different inputs in the form, listen for changes
   // to input elements and record their values in state
-  const handleInputChange = (e: any, index: number) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>,
+    index: number
+  ) => {
     setDisable(false);
     const { name, value } = e.target;
     const list = [...rows];
-    //list[index][name] = value;
+    list[index][name] = value;
     setRows(list);
   };
 
@@ -116,11 +115,8 @@ const Events = () => {
 
   // Handle the case of delete confirmation where
   // user click yes delete a specific row of id:i
-  const handleRemoveClick = (i: number) => {
-    const list = [...rows];
-    list.splice(i, 1);
-    setRows(list);
-    setShowConfirm(false);
+  const handleRemoveClick = (event: any) => {
+    deleteEvent(event);
   };
 
   // Handle the case of delete confirmation
@@ -139,19 +135,19 @@ const Events = () => {
                 <div>
                   <Button onClick={handleAdd}>
                     <AddBoxIcon onClick={handleAdd} />
-                    ADD
+                    {t("ADD")}
                   </Button>
                   {rows.length !== 0 && (
                     <div>
                       {disable ? (
                         <Button onClick={handleSave}>
                           <DoneIcon />
-                          SAVE
+                          {t("SAVE")}
                         </Button>
                       ) : (
                         <Button onClick={handleSave}>
                           <DoneIcon />
-                          SAVE
+                          {t("SAVE")}
                         </Button>
                       )}
                     </div>
@@ -161,11 +157,11 @@ const Events = () => {
                 <div>
                   <Button onClick={handleAdd}>
                     <AddBoxIcon onClick={handleAdd} />
-                    ADD
+                    {t("ADD")}
                   </Button>
                   <Button onClick={handleEdit}>
                     <CreateIcon />
-                    EDIT
+                    {t("EDIT")}
                   </Button>
                 </div>
               )}
@@ -181,13 +177,13 @@ const Events = () => {
             <TableHead>
               <TableRow>
                 <TableCell>Id</TableCell>
-                <TableCell>Name</TableCell>
-                <TableCell>Location</TableCell>
-                <TableCell>Start</TableCell>
-                <TableCell>End</TableCell>
-                <TableCell>Description-EN</TableCell>
-                <TableCell>Description-DE</TableCell>
-                <TableCell>Subscribed User Ids</TableCell>
+                <TableCell>{t("NAME")}</TableCell>
+                <TableCell>{t("LOCATION")}</TableCell>
+                <TableCell>{t("START_DATE")}</TableCell>
+                <TableCell>{t("END_DATE")}</TableCell>
+                <TableCell>{t("DESC-EN")}</TableCell>
+                <TableCell>{t("DESC-DE")}</TableCell>
+                <TableCell>{t("SUBSCRIBED_USERS_IDS")}</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -200,42 +196,42 @@ const Events = () => {
                           <TableCell>
                             <input
                               value={row.Name}
-                              name="firstname"
+                              name="Name"
                               onChange={(e) => handleInputChange(e, i)}
                             />
                           </TableCell>
                           <TableCell>
                             <input
                               value={row.Location}
-                              name="lastname"
+                              name="Location"
                               onChange={(e) => handleInputChange(e, i)}
                             />
                           </TableCell>
                           <TableCell>
                             <input
                               value={row.Start}
-                              name="email"
+                              name="Start"
                               onChange={(e) => handleInputChange(e, i)}
                             />
                           </TableCell>
                           <TableCell>
                             <input
                               value={row.End}
-                              name="email"
+                              name="End"
                               onChange={(e) => handleInputChange(e, i)}
                             />
                           </TableCell>
                           <TableCell>
                             <input
                               value={row.DescriptionEN}
-                              name="email"
+                              name="DescriptionEN"
                               onChange={(e) => handleInputChange(e, i)}
                             />
                           </TableCell>
                           <TableCell>
                             <input
                               value={row.DescriptionDE}
-                              name="email"
+                              name="DescriptionDE"
                               onChange={(e) => handleInputChange(e, i)}
                             />
                           </TableCell>
@@ -285,27 +281,27 @@ const Events = () => {
                             aria-describedby="alert-dialog-description"
                           >
                             <DialogTitle id="alert-dialog-title">
-                              {"Confirm Delete"}
+                              {t("CONFIRM_DELETE")}
                             </DialogTitle>
                             <DialogContent>
                               <DialogContentText id="alert-dialog-description">
-                                Are you sure to delete
+                                {t("DELETE")}
                               </DialogContentText>
                             </DialogContent>
                             <DialogActions>
                               <Button
-                                onClick={() => handleRemoveClick(i)}
+                                onClick={() => handleRemoveClick(row)}
                                 color="primary"
                                 autoFocus
                               >
-                                Yes
+                                {t("YES")}
                               </Button>
                               <Button
                                 onClick={handleNo}
                                 color="primary"
                                 autoFocus
                               >
-                                No
+                                {t("NO")}
                               </Button>
                             </DialogActions>
                           </Dialog>

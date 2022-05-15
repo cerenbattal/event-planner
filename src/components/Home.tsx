@@ -18,7 +18,7 @@ type Event = {
  * Gets subscribed events and return dashboard with this data
  * @return {React.FC}
  */
-function Home() {
+const Home: React.FC = (): JSX.Element => {
   const { state } = useContext(Context);
   const [subscribedEvents, setSubscribedEvents] = useState<Event[]>([]);
 
@@ -34,9 +34,7 @@ function Home() {
 
   const getSubscribedEvents = () => {
     state.authUser.SubscribedEvents.forEach((eventId: any) => {
-      console.log(eventId);
       const foundEvent = findEventById(eventId);
-      console.log(foundEvent);
       setSubscribedEvents((subscribedEvents) => [
         ...subscribedEvents,
         foundEvent,
@@ -49,6 +47,6 @@ function Home() {
   ) : (
     <div>no events</div>
   );
-}
+};
 
 export default Home;

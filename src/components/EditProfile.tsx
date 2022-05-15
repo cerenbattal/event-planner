@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { useTranslation } from "react-i18next";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
@@ -8,7 +8,7 @@ import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import TextField from "@mui/material/TextField";
 
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Context } from "../context/GlobalContext";
 
 const profileHeader = {
@@ -24,18 +24,23 @@ const profileContent = {
   marginTop: "50px",
 } as React.CSSProperties;
 
-const Profile = () => {
+const Profile: React.FC = (): JSX.Element => {
   const [email, setEmail] = useState<string | undefined>();
-  const [username, setUsername] = useState<string | undefined>();
-  const { state, updateProfile } = useContext(Context);
+  const [name, setName] = useState<string | undefined>();
+  const [surname, setSurname] = useState<string | undefined>();
+  const [isError, setIsError] = useState<boolean | undefined>(false);
+  const { state } = useContext(Context);
   const { t } = useTranslation();
   const navigate = useNavigate();
 
   const handleUpdateProfile = () => {
-    if (!email || !username) {
-      console.log("mail and password are required 400");
+    if (!email || !name || !surname) {
+      setIsError(true);
     } else {
-      updateProfile();
+      setIsError(false);
+      state.authUser.Email = email;
+      state.authUser.Name = name;
+      state.authUser.Surname = surname;
       navigate("/profile");
     }
   };
@@ -43,7 +48,7 @@ const Profile = () => {
   return (
     <>
       <Container fixed>
-        <Box sx={{ bgcolor: "#cfe8fc", height: "100vh", padding: "50px" }}>
+        <Box sx={{ bgcolor: "#cfe8fc", height: "71vh", padding: "50px" }}>
           <div style={profileHeader}>
             <Avatar
               alt="Remy Sharp"
@@ -68,7 +73,7 @@ const Profile = () => {
                   columns={{ xs: 4, sm: 8, md: 12 }}
                 >
                   <Typography gutterBottom variant="h6" component="div">
-                    {t("USERNAME")}
+                    {t("NAME")}
                   </Typography>
                 </Grid>
                 <Grid
@@ -76,12 +81,55 @@ const Profile = () => {
                   spacing={{ xs: 0, md: 0 }}
                   columns={{ xs: 4, sm: 8, md: 12 }}
                 >
-                  <TextField
-                    label="Username"
-                    placeholder="Enter username"
-                    fullWidth
-                    onChange={(e) => setUsername(e.target.value)}
-                  />
+                  {isError ? (
+                    <TextField
+                      error
+                      label="Name"
+                      placeholder="Enter name"
+                      fullWidth
+                      helperText={t("NAME_REQ")}
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                  ) : (
+                    <TextField
+                      label="Name"
+                      placeholder="Enter name"
+                      fullWidth
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                  )}
+                </Grid>
+                <Grid
+                  container
+                  spacing={{ xs: 0, md: 0 }}
+                  columns={{ xs: 4, sm: 8, md: 12 }}
+                >
+                  <Typography gutterBottom variant="h6" component="div">
+                    {t("SURNAME")}
+                  </Typography>
+                </Grid>
+                <Grid
+                  container
+                  spacing={{ xs: 0, md: 0 }}
+                  columns={{ xs: 4, sm: 8, md: 12 }}
+                >
+                  {isError ? (
+                    <TextField
+                      error
+                      label="Surname"
+                      placeholder="Enter surname"
+                      fullWidth
+                      helperText={t("SURNAME_REQ")}
+                      onChange={(e) => setSurname(e.target.value)}
+                    />
+                  ) : (
+                    <TextField
+                      label="Surname"
+                      placeholder="Enter surname"
+                      fullWidth
+                      onChange={(e) => setSurname(e.target.value)}
+                    />
+                  )}
                 </Grid>
                 <Grid
                   container
@@ -97,12 +145,23 @@ const Profile = () => {
                   spacing={{ xs: 0, md: 0 }}
                   columns={{ xs: 4, sm: 8, md: 12 }}
                 >
-                  <TextField
-                    label="Email"
-                    placeholder="Enter email"
-                    fullWidth
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
+                  {isError ? (
+                    <TextField
+                      error
+                      label="Email"
+                      placeholder="Enter email"
+                      fullWidth
+                      helperText={t("MAIL_REQ")}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  ) : (
+                    <TextField
+                      label="Email"
+                      placeholder="Enter email"
+                      fullWidth
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  )}
                 </Grid>
               </Grid>
             </Box>
@@ -115,7 +174,7 @@ const Profile = () => {
           fullWidth
           onClick={() => handleUpdateProfile()}
         >
-          Save
+          {t("SAVE")}
         </Button>
       </Container>
     </>

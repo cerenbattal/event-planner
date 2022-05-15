@@ -6,7 +6,7 @@
     "Email": "c",
     "Password": "1234",
     "Role": "user",
-    "SubscribedEvents": [2, 3, 4, 5]
+    "SubscribedEvents": [4, 5]
   },
   {
     "Id": 2,

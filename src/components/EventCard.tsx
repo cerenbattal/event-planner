@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
@@ -8,41 +8,23 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import { Context } from "../context/GlobalContext";
-import media from "../images/back2.jpeg";
-import EventModal from "./EventModal";
-
-type Event = {
-  Id: number;
-  EventTypeId: number;
-  SubscribedUserIds: number[];
-  Name: String;
-  DescriptionEN: String;
-  DescriptionDE: String;
-  Start: String;
-  End: String;
-  Location: String;
-};
+import media from "../images/back-img.jpg";
 
 /**
- *
+ * @param {any} props
  * @return {React.Component}
  */
-const EventCard = (props: any) => {
+const EventCard: React.FC<any> = (props: any) => {
   const { state, subscribeEvent } = useContext(Context);
-  const [showLearnMore, setShowLearnMore] = useState(false);
   const { t } = useTranslation();
-
-  const handleLearnMore = () => {
-    setShowLearnMore(!showLearnMore);
-  };
 
   const handleSubscription = (eventId: number) => {
     subscribeEvent(state.authUser.Id, eventId);
+    props.openSnackbar(true);
   };
 
   return (
     <>
-      {showLearnMore ?? <EventModal />}
       <Card sx={{ maxWidth: 345 }}>
         <CardActionArea>
           <CardMedia component="img" height="140" image={media} alt="" />
@@ -51,13 +33,28 @@ const EventCard = (props: any) => {
               {props.event.Name}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              {props.event.DescriptionEN}
+              {state.language === "en"
+                ? props.event.DescriptionEN
+                : props.event.DescriptionDE}
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small" onClick={() => handleLearnMore()}>
-              {t("LEARN_MORE")}
-            </Button>
+            {props.subscribed ? (
+              <Typography variant="body2" color="text.secondary">
+                {t("ALREADY_SUBS")}
+              </Typography>
+            ) : (
+              <>
+                {props.subscription && (
+                  <Button
+                    size="small"
+                    onClick={(e) => handleSubscription(props.event.Id)}
+                  >
+                    {t("SUBSCRIBE")}
+                  </Button>
+                )}
+              </>
+            )}
           </CardActions>
         </CardActionArea>
       </Card>
