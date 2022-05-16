@@ -10,6 +10,8 @@ import { CardActionArea } from "@mui/material";
 import { Context } from "../context/GlobalContext";
 import media from "../images/back-img.jpg";
 
+const bodyStyle = {};
+
 /**
  * @param {any} props
  * @return {JSX.Element}
@@ -23,6 +25,22 @@ const EventCard: React.FC<any> = (props: any): JSX.Element => {
     props.openSnackbar(true);
   };
 
+  const findEventById = (eventId: any) => {
+    return state.events.find((event: any) => {
+      return event.Id === eventId;
+    });
+  };
+
+  const getSubscribedUsers = (eventId: number) => {
+    const event = findEventById(eventId);
+    const nameArr: string[] = [];
+    event.SubscribedUserIds.forEach((id: number) => {
+      const subscribedName = `${state.users[id]?.Name} ${state.users[id]?.Surname} `;
+      nameArr.push(subscribedName);
+    });
+    return nameArr;
+  };
+
   return (
     <>
       <Card sx={{ maxWidth: 345 }}>
@@ -30,9 +48,21 @@ const EventCard: React.FC<any> = (props: any): JSX.Element => {
           <CardMedia component="img" height="140" image={media} alt="" />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              {props.event.Name}
+              {props.event.Name} - {props.event.Location}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              {props.event.Start} - {props.event.End}
+            </Typography>
+            <Typography variant="caption">
+              {getSubscribedUsers(props.event.Id).join(", ")}{" "}
+              {t("ARE_SUBSCRIBED")}
+            </Typography>
+            <Typography
+              variant="body2"
+              style={bodyStyle}
+              color="text.secondary"
+            >
+              {""}
               {state.language === "en"
                 ? props.event.DescriptionEN
                 : props.event.DescriptionDE}

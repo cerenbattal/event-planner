@@ -19,7 +19,7 @@ const Welcome: React.FC = (): JSX.Element => {
   return (
     <>
       <CssBaseline />
-      <main>
+      <main data-testid="progress-test">
         <Box
           sx={{
             bgcolor: "background.paper",

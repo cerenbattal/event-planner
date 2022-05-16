@@ -44,5 +44,7 @@
   "SURNAME_REQ": "Surname is required.",
   "MAIL_REQ": "Email is required.",
   "ALREADY_SUBS": "You are already subscribed to this event.",
-  "CONFIRM_DELETE": "Confirm Delete"
+  "CONFIRM_DELETE": "Confirm Delete",
+  "ARE_SUBSCRIBED": "are subscribed to this event.",
+  "CLOSE": "Close"
 }

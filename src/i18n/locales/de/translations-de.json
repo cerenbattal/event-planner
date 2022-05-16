@@ -44,5 +44,6 @@
   "SURNAME_REQ": "Nachname ist erforderlich.",
   "MAIL_REQ": "E-Mail ist erforderlich.",
   "ALREADY_SUBS": "Sie haben diese Veranstaltung bereits abonniert.",
-  "CONFIRM_DELETE": "Löschen bestätigen"
+  "CONFIRM_DELETE": "Löschen bestätigen",
+  "ARE_SUBSCRIBED": "haben diese Veranstaltung abonniert."
 }

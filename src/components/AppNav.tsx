@@ -145,7 +145,7 @@ const AppNav: React.FC = (): JSX.Element => {
               textDecoration: "none",
             }}
           >
-            LOGO
+            Event Planner
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
