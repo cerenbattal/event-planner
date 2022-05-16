@@ -29,7 +29,7 @@ Picture by [Kelly Sikkema](https://unsplash.com/@kellysikkema)
 
 ## Technologies
 
-I used `HTML`, `CSS`, `React`, `TypeScript`, `MaterialUI`, `JSDoc`, `ESLint`, `Prettier`.
+I used `HTML`, `CSS`, `React`, `TypeScript`, `Context API`, `MaterialUI`, `JSDoc`, `ESLint`, `Prettier`.
 
 ## Setup
 
