@@ -1,48 +1,67 @@
 # Project Title
 
-ceren-battal
-
-## Demo link:
-
-Access my site at [google.com](https://google.com)
+Event planner
 
 ## Table of Content:
 
 - [About The App](#about-the-app)
-- [Screenshots](#screenshots)
+- [Entities](#entities)
 - [Technologies](#technologies)
 - [Setup](#setup)
-- [Approach](#approach)
 - [Status](#status)
+- [Further development](#further-development)
 - [Credits](#credits)
 - [License](#license)
 
 ## About The App
 
-[Name of project] is an app that ...
+Event planner is an app that user can subscribe an event, look for upcoming and past events. Also, the application has Admin management page. 
+The application has two types of users. One type of user is an admin, and the second is a regular user.
+Admins can do CRUD operations on events, users and event types. Regular users can subscribe an event, view his/her subscribed events/upcoming events/past events. 
+The application has login system. User and event information are fetched from json files while application is setting up. 
 
-## Screenshots
+## Entities
 
-`![Writing](https://unsplash.com/photos/VBPzRgd7gfc)`
+### Events
+`"Id"
+"EventTypeId"
+"SubscribedUserIds"
+"Name"
+"DescriptionEN"
+"DescriptionDE"
+"Start"
+"End"
+"Location"`
 
-Picture by [Kelly Sikkema](https://unsplash.com/@kellysikkema)
+### Users
+`"Id"
+"Name"
+"Surname"
+"Email"
+"Password"
+"Role"
+"SubscribedEvents"`
+
+### Event Types
+`"Id"
+"Name"`
 
 ## Technologies
 
-I used `HTML`, `CSS`, `React`, `TypeScript`, `Context API`, `MaterialUI`, `JSDoc`, `ESLint`, `Prettier`.
+I used `HTML`, `CSS`, `React`, `TypeScript`, `Context API`, `MaterialUI`, `JSDoc`, `ESLint`, `Prettier`, `i18next`.
 
 ## Setup
 
 - download or clone the repository
 - run `npm install`
 
-## Approach
-
-I adopted the `BEM` naming style for my css class names and ...
-
 ## Status
 
-Project is still in progress.
+Project is done. 
+
+## Further development
+
+A database can be added to project in the future. Also, UI design can be improve and more unit tests can be write in the future.
 
 ## Credits
 
@@ -52,4 +71,4 @@ List of contriubutors:
 
 ## License
 
-MIT license @ [author](author.com)
+MIT license @[Ceren Battal](https://www.github.com/cerenbattal)
